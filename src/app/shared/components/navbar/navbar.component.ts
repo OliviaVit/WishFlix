@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { GenreService } from 'src/app/core/services/genre.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +12,21 @@ import { FormsModule } from '@angular/forms';
 })
 export class NavbarComponent {
   selectedGenre = '';
-  genres = ['Action', 'Comédie', 'Drame']; 
-  onGenreChange() {
+  genres: string[] = [];
+  
+  constructor(private genreService: GenreService) {}
+
+
+  ngOnInit(): void {
+    this.genreService.genres$.subscribe((genres: string[]) => {
+      this.genres = genres;
+    });
+  }
+
+  onGenreChange(): void {
+    
     console.log('Genre changé :', this.selectedGenre);
+    this.genreService.setSelectedGenre(this.selectedGenre); 
+  
   }
 }
