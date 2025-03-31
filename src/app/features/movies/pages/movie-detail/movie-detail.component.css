@@ -1,0 +1,36 @@
+.movie-detail {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    text-align: center;
+  
+    .back-button {
+      display: inline-block;
+      margin-bottom: 1rem;
+      background-color: #eee;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: #ddd;
+      }
+    }
+  
+    .movie-banner {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+  
+    .movie-summary {
+      text-align: left;
+      margin-top: 1rem;
+      color: #444;
+      font-size: 0.95rem;
+    }
+}

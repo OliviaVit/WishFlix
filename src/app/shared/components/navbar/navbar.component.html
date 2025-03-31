@@ -1,0 +1,20 @@
+<nav class="flex items-center justify-between px-6 py-4 bg-gray-900 text-white shadow-md">
+    <div class="text-2xl font-bold flex items-center space-x-2">
+      <span>🎬</span>
+      <span>WISHFLIX</span>
+    </div>
+  
+    <div class="flex items-center space-x-4">
+      <select
+        class="bg-gray-800 text-white px-3 py-1 rounded border border-gray-700 focus:outline-none"
+        [(ngModel)]="selectedGenre"
+        (change)="onGenreChange()"
+      >
+        <option value="">Tous les genres</option>
+        <option *ngFor="let genre of genres" [value]="genre">
+          {{ genre }}
+        </option>
+      </select>
+    </div>
+  </nav>
+  
