@@ -21,6 +21,6 @@ export class MoviesService {
   }
 
   searchMovies(term: string): Observable<Movie[]> {
-    return this.http.get<Movie[]>(`${this.apiUrl}?q=${term}`);
+    return this.http.get<Movie[]>(`https://api.tvmaze.com/search/shows?q=${term}`);
   }
 }

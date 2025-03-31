@@ -1,13 +1,13 @@
 <div class="movie-card">
     <img
       *ngIf="movie.image?.medium; else defaultImage"
-      [src]="movie.image?.medium"
+      [src]="movie.image.medium"
       [alt]="movie.name"
       class="movie-poster"
     />
     
     <ng-template #defaultImage>
-        <img [src]="movie.image.medium" [alt]="movie.name" class="movie-poster" />
+        <img [src]="movie.image" [alt]="movie.name" class="movie-poster" />
     </ng-template>
   
     <h3 class="movie-title">{{ movie.name }}</h3>

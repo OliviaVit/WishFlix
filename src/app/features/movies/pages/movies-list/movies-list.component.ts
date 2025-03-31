@@ -69,17 +69,46 @@ export class MoviesListComponent implements OnInit {
   }
 
   applySearchFilter(): void {
+    this.filteredMovies = this.movies; 
     const term = this.searchFilter.trim().toLowerCase();
-    if (term) {
+    //VERSION TRI LOCAL
+    /*if (term) {
       this.filteredMovies = this.filteredMovies.filter((movie) =>
         movie.name.toLowerCase().includes(term)
       );
-    }
+    }*/
+
+      //VERSION TRI API
+      if (term) {
+        this.moviesService.searchMovies(term).subscribe({
+          next: (data) => {
+            console.log('Films récupérés par recherche :', data);
+            this.filteredMovies = data.map((result: any) => ({
+              id: result.show.id,
+              name: result.show.name,
+              genres: result.show.genres,
+              image: result.show.image || { medium: 'assets/default-poster.jpg', original: 'assets/default-poster.jpg' },
+              summary: result.show.summary,
+              premiered: result.show.premiered,
+              year: result.show.premiered = new Date(result.show.premiered).getFullYear(),
+              rating: result.show.rating,
+            }));
+            this.isLoading = false;
+          },
+          error: (err) => {
+            console.error('Erreur API :', err);
+            this.isLoading = false;
+          },
+        });
+      } else {
+        this.filteredMovies = this.movies;
+      }
+      
   }
 
   onSearchChange(term: string): void {
     this.searchFilter = term;
-    this.applyGenreFilter(); // Refiltrage selon le genre aussi
+    this.applyGenreFilter(); 
     this.applySearchFilter();
   }
 

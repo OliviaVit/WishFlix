@@ -4,12 +4,7 @@
     @if (movie) {
       <h2>{{ movie.name }}</h2>
   
-      <img
-        [src]="movie.image?.original"
-        [alt]="movie.name"
-        class="movie-banner"
-      />
-  
+    
       <img [src]="movie.image.original" [alt]="movie.name" class="movie-banner" />
   
       <div class="movie-summary" [innerHTML]="movie.summary"></div>
