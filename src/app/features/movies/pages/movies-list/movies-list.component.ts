@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -7,6 +7,7 @@ import { Movie } from '../../../../models/movie.model';
 import { MoviesService } from '../../../../core/services/movies.service';
 import { SearchBarComponent } from '../../../../shared/components/search-bar/search-bar.component';
 import { MovieCardComponent } from '../../../../shared/components/movie-card/movie-card.component';
+import { GenreService } from 'src/app/core/services/genre.service';
 
 @Component({
   selector: 'app-movies-list',
@@ -30,7 +31,8 @@ export class MoviesListComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private moviesService: MoviesService
+    private moviesService: MoviesService,
+    private genreService: GenreService
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +41,19 @@ export class MoviesListComponent implements OnInit {
       this.searchFilter = params['search'] || '';
       this.fetchMovies();
     });
+
+    this.genreService.selectedGenre$.subscribe((genre: string) => {
+      if(genre){
+        this.genreFilter = genre; 
+        this.applyGenreFilter();
+      }
+      else{
+        this.genreFilter = null;
+        this.fetchMovies();
+      }
+      
+    });
+    
   }
 
   fetchMovies(): void {
@@ -50,6 +65,7 @@ export class MoviesListComponent implements OnInit {
         this.filteredMovies = data;
         this.applyGenreFilter();
         this.applySearchFilter();
+        this.logUniqueGenres();
         this.isLoading = false;
       },
       error: (err) => {
@@ -131,4 +147,22 @@ export class MoviesListComponent implements OnInit {
   goToDetail(arg0: number) {
     throw new Error('Method not implemented.');
   }
+
+  logUniqueGenres(): void {
+    const genres: string[] = [];
+  
+    for (let movie of this.movies) {
+      if (movie.genres) {
+        for (let genre of movie.genres) {
+          if (!genres.includes(genre)) {
+            genres.push(genre);
+          }
+        }
+      }
+    }
+  
+    this.genreService.emitGenres(genres); 
+
+  }
+
 }
