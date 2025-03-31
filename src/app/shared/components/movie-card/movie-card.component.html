@@ -1,0 +1,19 @@
+<div class="movie-card">
+    <img
+      *ngIf="movie.image?.medium; else defaultImage"
+      [src]="movie.image?.medium"
+      [alt]="movie.name"
+      class="movie-poster"
+    />
+    
+    <ng-template #defaultImage>
+        <img [src]="movie.image.medium" [alt]="movie.name" class="movie-poster" />
+    </ng-template>
+  
+    <h3 class="movie-title">{{ movie.name }}</h3>
+  
+    <p class="movie-genres" *ngIf="movie.genres?.length">
+      Genres : {{ movie.genres.join(', ') }}
+    </p>
+  </div>
+  
