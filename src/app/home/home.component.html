@@ -1,0 +1,10 @@
+<div class="search-sort-wrapper">
+    <app-search-bar
+      placeholder="Rechercher une série..."
+      (search)="onSearchChange($event)"
+    ></app-search-bar>
+    <app-sort></app-sort>
+
+</div>
+  
+<app-movies-list [movies]="filteredMovies"></app-movies-list>
