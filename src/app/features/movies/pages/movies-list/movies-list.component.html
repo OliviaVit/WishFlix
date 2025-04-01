@@ -11,12 +11,14 @@
   <option value="rating">Note</option>
 </select>
 
-<p *ngIf="filteredMovies?.length === 0">Aucun résultat</p>
+@if (filteredMovies?.length === 0) {
+  <p>Aucun résultat</p>
+}
+
 <div class="movies-grid">
-    <div *ngFor="let movie of filteredMovies">
-      <a [routerLink]="['/movies', movie.id]">
-        <app-movie-card [movie]="movie"></app-movie-card>
-      </a>
-    </div>
+  <div *ngFor="let movie of filteredMovies">
+    <a [routerLink]="['/movies', movie.id]">
+      <app-movie-card [movie]="movie"></app-movie-card>
+    </a>
   </div>
-  
+</div>
