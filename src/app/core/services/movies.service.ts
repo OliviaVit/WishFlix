@@ -23,4 +23,12 @@ export class MoviesService {
   searchMovies(term: string): Observable<Movie[]> {
     return this.http.get<Movie[]>(`https://api.tvmaze.com/search/shows?q=${term}`);
   }
+
+  getMovieSeasons(id: number): Observable<any> {
+    return this.http.get<any>(`https://api.tvmaze.com/shows/${id}/seasons`);
+  }
+
+  getSeasonEpisodes(id: number): Observable<any> {
+    return this.http.get<any>(`https://api.tvmaze.com/seasons/${id}/episodes`);
+  }
 }

@@ -3,11 +3,21 @@
   
     @if (movie) {
       <h2>{{ movie.name }}</h2>
-  
-    
       <img [src]="movie.image.original" [alt]="movie.name" class="movie-banner" />
-  
       <div class="movie-summary" [innerHTML]="movie.summary"></div>
+
+      <ul class="season-list">
+        @for (season of seasons; track season.id) {
+          <button (click)="onSelectSeason(season.id)">
+            <a>
+              Saison {{ season.number }}
+            </a>
+          </button>
+        }
+      </ul> 
     }
+    <app-season-details [seasonId]="selectedSeasonId"></app-season-details>
+
+</div>
   
   
