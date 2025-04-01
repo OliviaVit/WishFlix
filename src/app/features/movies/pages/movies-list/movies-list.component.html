@@ -1,21 +1,11 @@
-<h2>Series list</h2>
-
-<div class="search-sort-wrapper">
-  <app-search-bar
-    placeholder="Rechercher une série..."
-    (search)="onSearchChange($event)"
-  ></app-search-bar>
-  <app-genre-selector></app-genre-selector>
-</div>
-
-@if (filteredMovies?.length === 0) {
+@if (movies?.length === 0) {
   <p>No results</p>
 }
 
 <div class="movies-grid">
-  <div *ngFor="let movie of filteredMovies">
+  @for (movie of movies; track movie.id) {
     <a [routerLink]="['/movies', movie.id]">
       <app-movie-card [movie]="movie"></app-movie-card>
     </a>
-  </div>
+  }
 </div>

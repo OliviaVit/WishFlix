@@ -5,12 +5,12 @@ import { RouterLink } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-genre-selector',
+  selector: 'app-filter',
   imports: [ReactiveFormsModule],
-  templateUrl: './genre-selector.component.html',
-  styleUrl: './genre-selector.component.css'
+  templateUrl: './filter.component.html',
+  styleUrl: './filter.component.css'
 })
-export class GenreSelectorComponent implements OnInit {
+export class FilterComponent implements OnInit {
   genreControl = new FormControl<string>('');
 
   genres: string[] = [];

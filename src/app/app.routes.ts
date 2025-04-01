@@ -1,8 +1,11 @@
 import { Routes } from '@angular/router';
 import { SeasonDetailsComponent } from './season-details/season-details.component';
 import { SuggestionsComponent } from './suggestions/suggestions.component';
+import { HomeComponent } from './home/home.component';
 
 export const routes: Routes = [
+
+  { path: 'home', component: HomeComponent },
   {
     path: 'movies',
     loadComponent: () =>
@@ -19,7 +22,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'movies',
+    redirectTo: 'home',
     pathMatch: 'full',
   },
 
