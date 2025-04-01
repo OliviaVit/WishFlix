@@ -8,6 +8,7 @@ import { MoviesService } from '../../../../core/services/movies.service';
 import { SearchBarComponent } from '../../../../shared/components/search-bar/search-bar.component';
 import { MovieCardComponent } from '../../../../shared/components/movie-card/movie-card.component';
 import { GenreService } from 'src/app/core/services/genre.service';
+import { GenreSelectorComponent } from "../../../../genre-selector/genre-selector.component";
 
 @Component({
   selector: 'app-movies-list',
@@ -18,7 +19,8 @@ import { GenreService } from 'src/app/core/services/genre.service';
     ReactiveFormsModule,
     SearchBarComponent,
     MovieCardComponent,
-  ],
+    GenreSelectorComponent
+],
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.css'],
 })
@@ -37,7 +39,6 @@ export class MoviesListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      this.genreFilter = params['genre'] || null;
       this.searchFilter = params['search'] || '';
       this.fetchMovies();
     });
