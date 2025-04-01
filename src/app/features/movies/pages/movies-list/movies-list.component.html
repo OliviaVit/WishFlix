@@ -1,15 +1,17 @@
-<h2>Liste des films</h2>
+<h2>Liste des Séries</h2>
 
-<app-search-bar
-  placeholder="Rechercher un film..."
-  (search)="onSearchChange($event)"
-></app-search-bar>
+<div class="search-sort-wrapper">
+  <app-search-bar
+    placeholder="Rechercher une série..."
+    (search)="onSearchChange($event)"
+  ></app-search-bar>
 
-<select (change)="onSortChange($event)">
-  <option value="name">Nom</option>
-  <option value="year">Année</option>
-  <option value="rating">Note</option>
-</select>
+  <select class="genre-dropdown" (change)="onSortChange($event)">
+    <option value="name">Nom</option>
+    <option value="year">Année</option>
+    <option value="rating">Note</option>
+  </select>
+</div>
 
 @if (filteredMovies?.length === 0) {
   <p>Aucun résultat</p>
