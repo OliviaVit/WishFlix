@@ -1,6 +1,6 @@
 <div class="genre-select">  
     <select class="genre-dropdown" [formControl]="genreControl">
-      <option value="">Tous les genres</option>
+      <option value="">All genres</option>
       @for (genre of genres; track genre) {
         <option [value]="genre">{{ genre }}</option>
       }

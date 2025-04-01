@@ -1,10 +1,13 @@
 <nav class="navbar">
-  <div class="logo">
+  <div class="logo" routerLink="/" style="cursor: pointer;">
     <span class="icon">🎬</span>
     <span class="text">WISHFLIX</span>
   </div>
+
   <button class="suggestions" routerLink="/suggestions">Suggestions</button>
 
-  <app-filter></app-filter>
-
+  <div class="navbar-controls">
+    <app-sort></app-sort>
+    <app-filter></app-filter>
+  </div>
 </nav>

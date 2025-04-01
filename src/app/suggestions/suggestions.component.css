@@ -1,0 +1,19 @@
+.genre-button {
+    background-color: #fdf8f2;
+    color: #5a4032;
+    border: 1px solid #d6bfa8;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  }
+  
+  .genre-button:hover {
+    background-color: #e9d4c1;
+    color: #3d2a1f;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  

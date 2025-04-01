@@ -11,3 +11,4 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
 export class AppComponent {
   title = 'wishflix';
 }
+ //faire en sorte que la navbar soit que sur la page d'accueil crée un home et importer tout dedans 
