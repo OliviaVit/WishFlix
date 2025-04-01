@@ -12,8 +12,10 @@
   
     <h3 class="movie-title">{{ movie.name }}</h3>
   
-    <p class="movie-genres" *ngIf="movie.genres?.length">
-      Genres : {{ movie.genres.join(', ') }}
+    <p class="movie-genres"> 
+      @if (movie.genres?.length){
+        Genres : {{ movie.genres.join(', ') }}
+      }
     </p>
   </div>
   
