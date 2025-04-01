@@ -11,14 +11,20 @@ export class GenreService {
   private selectedGenreSubject = new BehaviorSubject<string>('');
   selectedGenre$ = this.selectedGenreSubject.asObservable();
 
+  private multiSelectedGenresSubject = new BehaviorSubject<string[]>([]); 
+  multiSelectedGenres$ = this.multiSelectedGenresSubject.asObservable(); 
+
 
   emitGenres(genres: string[]): void {
-    console.log('Genres émis :', genres);
-
     this.genresSubject.next(genres); 
   }
 
   setSelectedGenre(genre: string): void {
     this.selectedGenreSubject.next(genre);
   }
+
+  setMultiSelectedGenres(genres: string[]): void {
+    this.multiSelectedGenresSubject.next(genres);
+  }
+  
 }

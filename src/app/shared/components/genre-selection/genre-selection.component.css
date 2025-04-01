@@ -1,0 +1,20 @@
+.genre-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  button.selected {
+    background-color: #6c63ff;
+    color: white;
+    border-color: #6c63ff;
+  }
+  

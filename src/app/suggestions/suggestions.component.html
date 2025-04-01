@@ -1,1 +1,9 @@
-<p>suggestions works!</p>
+<app-genre-selection (onGenresSelected)="onGenresSelected($event)"></app-genre-selection>
+<app-series-selector (selectionChanged)="onTopRatedChanged($event)"></app-series-selector>
+
+@if(shouldDisplayResults){
+    <app-movies-list [movies]="filteredMovies"></app-movies-list>
+}
+@else{
+    <a>Veuillez selectionnez une serie ou un genre</a>
+}
