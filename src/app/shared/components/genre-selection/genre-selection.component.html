@@ -1,0 +1,10 @@
+<div class="genre-buttons">
+  @for (genre of genres; track genre) {
+    <button
+      type="button"
+      (click)="toggleGenre(genre)"
+      [class.selected]="isSelected(genre)">
+      {{ genre }}
+    </button>
+  }
+</div>

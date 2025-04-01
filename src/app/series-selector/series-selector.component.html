@@ -1,0 +1,12 @@
+<h3>🎯 Top 20 séries les mieux notées</h3>
+
+<div class="mini-grid">
+    @for(movie of movies; track movie.id){
+        <app-mini-movie-card
+    [movie]="movie"
+    [selected]="isSelected(movie)"
+    (click)="toggleSelection(movie)">
+  </app-mini-movie-card>
+    }
+  
+</div>
