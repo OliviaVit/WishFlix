@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { SeasonDetailsComponent } from './season-details/season-details.component';
 
 export const routes: Routes = [
   {
@@ -20,4 +21,6 @@ export const routes: Routes = [
     redirectTo: 'movies',
     pathMatch: 'full',
   },
+
+  { path: 'season/:id', component: SeasonDetailsComponent },
 ];

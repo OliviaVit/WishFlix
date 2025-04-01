@@ -1,0 +1,20 @@
+<div >
+    
+    @if(seasonId){
+        <h3>Épisodes</h3>
+        <ul>
+            <li>
+                @for(episode of episodes; track episode.id){
+                    <strong>{{ episode.number }}. {{ episode.name }}</strong><br />
+                }
+            </li>
+          </ul>
+    }
+</div>
+  
+<div>
+    @if(episodes.length === 0){
+        <p>Aucun épisode trouvé pour cette saison.</p>
+    }
+</div>
+  
