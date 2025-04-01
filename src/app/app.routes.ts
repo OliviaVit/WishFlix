@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { SeasonDetailsComponent } from './season-details/season-details.component';
+import { SuggestionsComponent } from './suggestions/suggestions.component';
 
 export const routes: Routes = [
   {
@@ -22,5 +23,5 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
 
-  { path: 'season/:id', component: SeasonDetailsComponent },
+  { path: 'suggestions', component: SuggestionsComponent },
 ];

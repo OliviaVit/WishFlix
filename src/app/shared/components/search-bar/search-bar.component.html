@@ -1,8 +1,7 @@
 <input
   type="text"
   class="search-bar"
-  [(ngModel)]="searchTerm"
-  (input)="onInputChange()"
-  [placeholder]="placeholder || 'Rechercher une Séries...'"
+  [formControl]="searchControl"
+  [placeholder]="placeholder || 'Rechercher une série...'"
   autocomplete="off"
 />

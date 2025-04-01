@@ -3,17 +3,8 @@
     <span class="icon">🎬</span>
     <span class="text">WISHFLIX</span>
   </div>
+  <button class="suggestions" routerLink="/suggestions">Suggestions</button>
 
-  <div class="genre-select">
-    <select
-      class="genre-dropdown"
-      [(ngModel)]="selectedGenre"
-      (change)="onGenreChange()"
-    >
-      <option value="">Tous les genres</option>
-      @for (genre of genres; track genre) {
-        <option [value]="genre">{{ genre }}</option>
-      }
-    </select>
-  </div>
+  <app-genre-selector></app-genre-selector>
+  
 </nav>
