@@ -5,12 +5,7 @@
     placeholder="Rechercher une série..."
     (search)="onSearchChange($event)"
   ></app-search-bar>
-
-  <select class="genre-dropdown" (change)="onSortChange($event)">
-    <option value="name">Name</option>
-    <option value="year">Date</option>
-    <option value="rating">Rate</option>
-  </select>
+  <app-genre-selector></app-genre-selector>
 </div>
 
 @if (filteredMovies?.length === 0) {
