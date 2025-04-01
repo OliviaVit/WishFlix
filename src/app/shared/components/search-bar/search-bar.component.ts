@@ -1,10 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms'; 
+import { FormControl, ReactiveFormsModule } from '@angular/forms'; 
+import { debounceTime, distinctUntilChanged, filter } from 'rxjs';
 
 @Component({
   selector: 'app-search-bar',
   standalone: true,
-  imports: [FormsModule], 
+  imports: [ReactiveFormsModule], 
   templateUrl: './search-bar.component.html',
   styleUrls: ['./search-bar.component.css'] 
 })
@@ -12,9 +13,17 @@ export class SearchBarComponent {
   @Input() placeholder: string = '';
   @Output() search = new EventEmitter<string>();
 
-  searchTerm: string = '';
+  searchControl = new FormControl('');
 
-  onInputChange() {
-    this.search.emit(this.searchTerm);
+  constructor() {
+    this.searchControl.valueChanges.pipe(
+      filter((value): value is string => value !== null),
+      debounceTime(500),
+      distinctUntilChanged(),
+      filter((term: string) => term.length === 0 || term.length >= 3)
+    ).subscribe((value: string) => {
+      this.search.emit(value.trim());
+    });
+    
   }
 }

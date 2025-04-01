@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Movie } from '../../../../models/movie.model';
 import { MoviesService } from '../../../../core/services/movies.service';
@@ -15,7 +15,7 @@ import { GenreService } from 'src/app/core/services/genre.service';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
+    ReactiveFormsModule,
     SearchBarComponent,
     MovieCardComponent,
   ],
@@ -76,6 +76,7 @@ export class MoviesListComponent implements OnInit {
   }
 
   applyGenreFilter(): void {
+    this.filteredMovies = this.movies
     if (this.genreFilter) {
       const genre = this.genreFilter.toLowerCase();
       this.filteredMovies = this.filteredMovies.filter((movie) =>
@@ -91,7 +92,6 @@ export class MoviesListComponent implements OnInit {
       if (term) {
         this.moviesService.searchMovies(term).subscribe({
           next: (data) => {
-            console.log('Films récupérés par recherche :', data);
             this.filteredMovies = data.map((result: any) => ({
               id: result.show.id,
               name: result.show.name,
