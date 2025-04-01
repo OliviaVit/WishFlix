@@ -87,14 +87,7 @@ export class MoviesListComponent implements OnInit {
   applySearchFilter(): void {
     this.filteredMovies = this.movies; 
     const term = this.searchFilter.trim().toLowerCase();
-    //VERSION TRI LOCAL
-    /*if (term) {
-      this.filteredMovies = this.filteredMovies.filter((movie) =>
-        movie.name.toLowerCase().includes(term)
-      );
-    }*/
-
-      //VERSION TRI API
+   
       if (term) {
         this.moviesService.searchMovies(term).subscribe({
           next: (data) => {

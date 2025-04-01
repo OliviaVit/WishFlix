@@ -1,28 +1,21 @@
-import { Component, Input, OnInit, SimpleChanges  } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Season } from '../models/season';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Episode } from '../models/episode';
 import { MoviesService } from '../core/services/movies.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-season-details',
-  imports: [RouterLink],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './season-details.component.html',
-  styleUrl: './season-details.component.css'
+  styleUrls: ['./season-details.component.css'],
 })
-export class SeasonDetailsComponent {
-
- 
-  episodes: Episode[] = [];
+export class SeasonDetailsComponent implements OnChanges {
   @Input() seasonId!: number;
-  movieId!: number;
+  episodes: Episode[] = [];
+  expandedEpisodes: Set<number> = new Set(); 
 
-
-  constructor(
-    private route: ActivatedRoute,
-    private moviesService: MoviesService
-  ) {}
+  constructor(private moviesService: MoviesService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['seasonId'] && this.seasonId) {
@@ -34,12 +27,23 @@ export class SeasonDetailsComponent {
     this.moviesService.getSeasonEpisodes(this.seasonId).subscribe({
       next: (data: Episode[]) => {
         this.episodes = data;
+        this.expandedEpisodes.clear(); 
       },
       error: (err) => {
-        console.error('Erreur lors du chargement des épisodes :', err);
+        console.error('Erreur chargement épisodes :', err);
       },
     });
   }
 
+  toggleEpisode(id: number): void {
+    if (this.expandedEpisodes.has(id)) {
+      this.expandedEpisodes.delete(id);
+    } else {
+      this.expandedEpisodes.add(id);
+    }
+  }
 
+  isExpanded(id: number): boolean {
+    return this.expandedEpisodes.has(id);
+  }
 }

@@ -1,0 +1,28 @@
+.episode-header {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.3rem 0;
+    user-select: none;
+  }
+  
+  .toggle-icon {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #7a5d4b;
+    width: 1rem;
+    display: inline-block;
+  }
+  
+  .summary {
+    margin-top: 0.4rem;
+    font-size: 0.95rem;
+    color: #6a4a34;
+    line-height: 1.5;
+    background-color: #fdf8f2;
+    border-left: 3px solid #c3a995;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+  }
+  

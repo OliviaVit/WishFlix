@@ -10,7 +10,7 @@
       [(ngModel)]="selectedGenre"
       (change)="onGenreChange()"
     >
-      <option value="">Tous les genres</option>
+      <option value="">All Types of Series </option>
       @for (genre of genres; track genre) {
         <option [value]="genre">{{ genre }}</option>
       }

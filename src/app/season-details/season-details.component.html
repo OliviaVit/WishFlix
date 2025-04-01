@@ -1,20 +1,24 @@
-<div >
-    
-    @if(seasonId){
-        <h3>Épisodes</h3>
-        <ul>
-            <li>
-                @for(episode of episodes; track episode.id){
-                    <strong>{{ episode.number }}. {{ episode.name }}</strong><br />
-                }
-            </li>
-          </ul>
-    }
-</div>
-  
 <div>
-    @if(episodes.length === 0){
-        <p>Aucun épisode trouvé pour cette saison.</p>
+    @if (episodes.length > 0) {
+      <h3>Episodes</h3>
+      <ul class="episode-list">
+        @for (episode of episodes; track episode.id) {
+          <li>
+            <div class="episode-header" (click)="toggleEpisode(episode.id)">
+              <span class="toggle-icon">
+                {{ isExpanded(episode.id) ? '−' : '+' }}
+              </span>
+              <strong>{{ episode.number }}. {{ episode.name }}</strong>
+            </div>
+  
+            @if (isExpanded(episode.id) && episode.summary) {
+              <div class="summary" [innerHTML]="episode.summary"></div>
+            }
+          </li>
+        }
+      </ul>
+    } @else {
+      <p>No episodes found for this season.</p>
     }
-</div>
+  </div>
   

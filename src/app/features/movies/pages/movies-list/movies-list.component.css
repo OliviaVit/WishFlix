@@ -103,3 +103,13 @@ p {
 .genre-dropdown {
   margin-left: 0.5rem; 
 }
+.summary {
+  margin-top: 0.4rem;
+  font-size: 0.95rem;
+  color: #6a4a34;
+  line-height: 1.5;
+  background-color: #fdf8f2;
+  border-left: 3px solid #c3a995;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
