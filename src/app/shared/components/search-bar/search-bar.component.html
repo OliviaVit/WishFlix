@@ -3,6 +3,6 @@
   class="search-bar"
   [(ngModel)]="searchTerm"
   (input)="onInputChange()"
-  [placeholder]="placeholder"
+  [placeholder]="placeholder || 'Rechercher une Séries...'"
+  autocomplete="off"
 />
-

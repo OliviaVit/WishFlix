@@ -1,31 +1,53 @@
 .movie-card {
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    padding: 1rem;
-    text-align: center;
-    width: 200px;
-    transition: transform 0.2s ease;
-  }
-  
-  .movie-card:hover {
-    transform: scale(1.03);
-  }
-  
-  .movie-poster {
-    width: 100%;
-    border-radius: 6px;
-    margin-bottom: 10px;
-  }
-  
-  .movie-title {
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin: 0.5rem 0;
-  }
-  
-  .movie-genres {
-    color: #666;
-    font-size: 0.9rem;
-  }
-  
+  background: #fdf8f2; /* beige clair */
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1rem;
+  text-align: center;
+  width: 200px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid #e5d6c5;
+  position: relative;
+}
+
+.movie-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.poster-wrapper {
+  position: relative;
+}
+
+.movie-poster {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge de note */
+.movie-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background-color: #8e6549;
+  color: #fdf8f2;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.5rem;
+  border-radius: 20px;
+  font-weight: bold;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
+
+.movie-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: #5a4032;
+}
+
+.movie-genres {
+  color: #7a5d4b;
+  font-size: 0.9rem;
+}

@@ -1,21 +1,31 @@
 <div class="movie-card">
-    <img
-      *ngIf="movie.image?.medium; else defaultImage"
-      [src]="movie.image.medium"
-      [alt]="movie.name"
-      class="movie-poster"
-    />
-    
-    <ng-template #defaultImage>
-        <img [src]="movie.image" [alt]="movie.name" class="movie-poster" />
-    </ng-template>
-  
-    <h3 class="movie-title">{{ movie.name }}</h3>
-  
-    <p class="movie-genres"> 
-      @if (movie.genres?.length){
-        Genres : {{ movie.genres.join(', ') }}
-      }
-    </p>
+  <div class="poster-wrapper">
+    @if (movie.image?.medium) {
+      <img
+        [src]="movie.image.medium"
+        [alt]="movie.name"
+        class="movie-poster"
+      />
+    } @else {
+      <img
+        [src]="movie.image"
+        [alt]="movie.name"
+        class="movie-poster"
+      />
+    }
+
+    @if (movie.rating?.average) {
+      <div class="movie-badge">
+        ⭐ {{ movie.rating.average }}
+      </div>
+    }
   </div>
-  
+
+  <h3 class="movie-title">{{ movie.name }}</h3>
+
+  <p class="movie-genres">
+    @if (movie.genres?.length) {
+      Genres : {{ movie.genres.join(', ') }}
+    }
+  </p>
+</div>
