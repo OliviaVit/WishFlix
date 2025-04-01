@@ -1,23 +1,30 @@
 <div class="movie-detail">
-    <button routerLink="/movies" class="back-button">← Retour à la liste</button>
-  
-    @if (movie) {
-      <h2>{{ movie.name }}</h2>
-      <img [src]="movie.image.original" [alt]="movie.name" class="movie-banner" />
-      <div class="movie-summary" [innerHTML]="movie.summary"></div>
+  <button routerLink="/movies" class="back-button">← Back to list</button>
 
-      <ul class="season-list">
-        @for (season of seasons; track season.id) {
-          <button (click)="onSelectSeason(season.id)">
-            <a>
+  @if (movie) {
+    <h2>{{ movie.name }}</h2>
+
+    <div class="movie-content">
+      <div class="movie-left">
+        <img
+          [src]="movie.image.original"
+          [alt]="movie.name"
+          class="movie-banner"
+        />
+        <div class="movie-summary" [innerHTML]="movie.summary"></div>
+      </div>
+
+      <div class="movie-right">
+        <ul class="season-list">
+          @for (season of seasons; track season.id) {
+            <button (click)="onSelectSeason(season.id)">
               Saison {{ season.number }}
-            </a>
-          </button>
-        }
-      </ul> 
-    }
-    <app-season-details [seasonId]="selectedSeasonId"></app-season-details>
+            </button>
+          }
+        </ul>
 
+        <app-season-details [seasonId]="selectedSeasonId" />
+      </div>
+    </div>
+  }
 </div>
-  
-  

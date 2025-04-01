@@ -1,4 +1,4 @@
-<h2>Liste des Séries</h2>
+<h2>Series list</h2>
 
 <div class="search-sort-wrapper">
   <app-search-bar
@@ -7,14 +7,14 @@
   ></app-search-bar>
 
   <select class="genre-dropdown" (change)="onSortChange($event)">
-    <option value="name">Nom</option>
-    <option value="year">Année</option>
-    <option value="rating">Note</option>
+    <option value="name">Name</option>
+    <option value="year">Date</option>
+    <option value="rating">Rate</option>
   </select>
 </div>
 
 @if (filteredMovies?.length === 0) {
-  <p>Aucun résultat</p>
+  <p>No results</p>
 }
 
 <div class="movies-grid">
