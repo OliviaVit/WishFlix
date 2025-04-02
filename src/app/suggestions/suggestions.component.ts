@@ -22,6 +22,8 @@ export class SuggestionsComponent implements OnInit {
   genreFilter: string [] = [];
   multiSelectedGenres: string [] = [];
   topRatedSelected: Movie[] = [];
+  showSeriesSelector: boolean = false;
+
 
 
   constructor(
@@ -150,6 +152,12 @@ export class SuggestionsComponent implements OnInit {
   get shouldDisplayResults(): boolean {
     return this.multiSelectedGenres.length > 0 || this.topRatedSelected.length > 0;
   }
+
+
+  toggleSeries(): void {
+    this.showSeriesSelector = !this.showSeriesSelector;
+  }
+
   
   
 }
