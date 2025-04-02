@@ -22,6 +22,8 @@ export class SuggestionsComponent implements OnInit {
   genreFilter: string [] = [];
   multiSelectedGenres: string [] = [];
   topRatedSelected: Movie[] = [];
+  showSeriesSelector: boolean = false;
+
 
 
   constructor(
@@ -52,30 +54,37 @@ export class SuggestionsComponent implements OnInit {
     });
   }
 
-  applySmartFiltering(): void {
-    if (!this.topRatedSelected.length && !this.multiSelectedGenres.length) {
-      this.filteredMovies = this.movies.slice(0, 5);
-      return;
-    }
+    applySmartFiltering(): void {
+      if (!this.topRatedSelected.length && !this.multiSelectedGenres.length) {
+        this.filteredMovies = this.movies.slice(0, 5);
+        return;
+      }
+    
       const selectedGenres = new Set<string>();
-  
-    this.topRatedSelected.forEach(movie => {
-      (movie.genres || []).forEach(g => selectedGenres.add(g));
-    });
-  
-    this.multiSelectedGenres.forEach(g => selectedGenres.add(g));
-  
-    const scored = this.movies.map(movie => {
-      const movieGenres = movie.genres || [];
-      const matchCount = movieGenres.filter(g => selectedGenres.has(g)).length;
-  
-      return { movie, matchCount };
-    });
-  
-    scored.sort((a, b) => b.matchCount - a.matchCount);
-  
-    this.filteredMovies = scored.slice(0, 5).map(s => s.movie);
-  }
+    
+      this.topRatedSelected.forEach(movie => {
+        (movie.genres || []).forEach(g => selectedGenres.add(g));
+      });
+    
+      this.multiSelectedGenres.forEach(g => selectedGenres.add(g));
+    
+      const scored = this.movies.map(movie => {
+        const movieGenres = movie.genres || [];
+        const matchCount = movieGenres.filter(g => selectedGenres.has(g)).length;
+    
+        return { movie, matchCount };
+      });
+    
+      scored.sort((a, b) => b.matchCount - a.matchCount);
+    
+      const selectedTitles = new Set(this.topRatedSelected.map(m => m.name));
+    
+      this.filteredMovies = scored
+        .map(s => s.movie)
+        .filter(m => !selectedTitles.has(m.name))
+        .slice(0, 5);
+    }
+    
   
   logUniqueGenres(): void {
     const genres: string[] = [];
@@ -150,6 +159,12 @@ export class SuggestionsComponent implements OnInit {
   get shouldDisplayResults(): boolean {
     return this.multiSelectedGenres.length > 0 || this.topRatedSelected.length > 0;
   }
+
+
+  toggleSeries(): void {
+    this.showSeriesSelector = !this.showSeriesSelector;
+  }
+
   
   
 }
