@@ -1,9 +1,10 @@
 <div class="search-sort-wrapper">
-    <app-search-bar
-      placeholder="Search a Series..."
-      (search)="onSearchChange($event)"
-    ></app-search-bar>
+  <app-search-bar
+    placeholder="Search a Series..."
+    (search)="onSearchChange($event)"
+  ></app-search-bar>
 
+  <button class="suggestions-button" routerLink="/suggestions">Suggestions</button>
 </div>
-  
+
 <app-movies-list [movies]="filteredMovies"></app-movies-list>

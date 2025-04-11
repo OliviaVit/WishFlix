@@ -10,6 +10,25 @@ h2 {
     -webkit-text-fill-color: transparent;
   }
   
+  .suggestions-button {
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 1px solid #a38b77;
+    background-color: #fdf8f2;
+    color: #5a4032;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  
+  .suggestions-button:hover {
+    border: 1px solid #7a5d4b;
+    box-shadow: 0 0 6px rgba(122, 93, 75, 0.2);
+  }
+  
   .search-sort-wrapper {
     display: flex;
     justify-content: center;
