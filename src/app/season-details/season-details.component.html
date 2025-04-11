@@ -1,22 +1,26 @@
 <div>
-    @if (episodes.length > 0) {
-      <h3>Episodes</h3>
-        @for (episode of episodes; track episode.id) {
-          
-            <div class="episode-header" (click)="toggleEpisode(episode.id)">
-              <span class="toggle-icon">
-                {{ isExpanded(episode.id) ? '−' : '+' }}
-              </span>
-              <strong>{{ episode.number }}. {{ episode.name }}</strong>
-            </div>
-  
-            @if (isExpanded(episode.id) && episode.summary) {
-              <div class="summary" [innerHTML]="episode.summary"></div>
-            }
-          
-        }
-    } @else {
-      <p>Choose a season !</p>
+  <!-- Si des épisodes sont dispo, on les affiche -->
+  @if (episodes.length > 0) {
+    <h3>Episodes</h3>
+
+    <!-- Boucle sur les épisodes de la saison sélectionnée -->
+    @for (episode of episodes; track episode.id) {
+      
+      <!-- En-tête cliquable pour afficher/cacher le résumé de l’épisode -->
+      <div class="episode-header" (click)="toggleEpisode(episode.id)">
+        <span class="toggle-icon">
+          {{ isExpanded(episode.id) ? '−' : '+' }} <!-- Affiche + ou − selon l’état -->
+        </span>
+        <strong>{{ episode.number }}. {{ episode.name }}</strong>
+      </div>
+
+      <!-- Si l’épisode est ouvert et a un résumé, on l’affiche -->
+      @if (isExpanded(episode.id) && episode.summary) {
+        <div class="summary" [innerHTML]="episode.summary"></div>
+      }
     }
-  </div>
-  
+  } @else {
+    <!-- Message par défaut si aucune saison n’est sélectionnée -->
+    <p>Choose a season !</p>
+  }
+</div>

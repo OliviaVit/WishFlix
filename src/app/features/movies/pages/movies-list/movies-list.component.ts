@@ -11,23 +11,23 @@ import { GenreService } from 'src/app/core/services/genre.service';
 
 @Component({
   selector: 'app-movies-list',
-  standalone: true,
+  standalone: true, 
   imports: [
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
     SearchBarComponent,
     MovieCardComponent
-],
+  ],
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.css'],
 })
 export class MoviesListComponent implements OnInit {
 
+  // Reçoit la liste des séries à afficher depuis un composant parent
   @Input() movies: Movie[] = [];
 
   ngOnInit(): void {
-      
+    // Code d'initialisation éventuel à ajouter ici (par exemple : chargement des filtres)
   }
-  
 }

@@ -1,8 +1,10 @@
+<!-- Si le tableau est vide, on affiche un message -->
 @if (movies?.length === 0) {
   <p>No results</p>
 }
 
 <div class="movies-grid">
+  <!-- Boucle sur chaque film et affiche une carte cliquable vers la page de détail -->
   @for (movie of movies; track movie.id) {
     <a [routerLink]="['/movies', movie.id]">
       <app-movie-card [movie]="movie"></app-movie-card>

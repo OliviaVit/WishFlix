@@ -1,20 +1,26 @@
 <div class="movie-detail">
+  <!-- Bouton pour revenir à la page d'accueil -->
   <button routerLink="/" class="back-button">← Back to home page</button>
 
+  <!-- Si un film est chargé, on affiche les infos -->
   @if (movie) {
     <h2>{{ movie.name }}</h2>
 
     <div class="movie-content">
       <div class="movie-left">
+        <!-- Affiche l'image de la séri -->
         <img
           [src]="movie.image.original"
           [alt]="movie.name"
           class="movie-banner"
         />
+
+        <!-- Affiche le résumé -->
         <div class="movie-summary" [innerHTML]="movie.summary"></div>
       </div>
 
       <div class="movie-right">
+        <!-- Liste des saisons sous forme de boutons -->
         <ul class="season-list">
           @for (season of seasons; track season.id) {
             <button (click)="onSelectSeason(season.id)">
@@ -23,6 +29,7 @@
           }
         </ul>
 
+        <!-- Composant enfant qui affiche les détails d’une saison -->
         <app-season-details [seasonId]="selectedSeasonId" />
       </div>
     </div>

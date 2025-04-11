@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+
 import { SearchBarComponent } from '../shared/components/search-bar/search-bar.component';
 import { MovieCardComponent } from '../shared/components/movie-card/movie-card.component';
-import { Movie } from '../models/movie.model';
+import { Movie } from '../models/movie.model'; 
 import { MoviesService } from '../core/services/movies.service';
 import { GenreService } from '../core/services/genre.service';
 import { MoviesListComponent } from "../features/movies/pages/movies-list/movies-list.component";
@@ -23,13 +24,13 @@ import { SortService } from '../core/services/sort.service';
     FilterComponent,
     MoviesListComponent,
     SortSelectorComponent
-],
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
-  movies: Movie[] = [];
-  filteredMovies: Movie[] = [];
+  movies: Movie[] = []; // Séries récupérées depuis l’API
+  filteredMovies: Movie[] = []; // Séries affichées (filtrées + triées)
   genreFilter: string | null = null;
   isLoading: boolean = false;
   searchFilter: string = '';
@@ -42,38 +43,38 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Rechargement en cas de changement dans les queryParams
     this.route.queryParams.subscribe((params) => {
       this.fetchMovies();
     });
 
+    // Filtrage par genre en fonction du service GenreService
     this.genreService.selectedGenre$.subscribe((genre: string) => {
-      if(genre){
+      if (genre) {
         this.genreFilter = genre; 
         this.applyGenreFilter();
-      }
-      else{
+      } else {
         this.genreFilter = null;
-        this.fetchMovies();
+        this.fetchMovies(); // recharge tout si pas de genre sélectionné
       }
-      
     });
 
+    // Application du tri à chaque changement de type de tri
     this.sortService.sort$.subscribe((sortType) => {
       this.sortMovies(sortType);
     });
-    
   }
 
+  // Récupère toutes les séries depuis l’API
   fetchMovies(): void {
     this.isLoading = true;
     this.moviesService.getAllMovies().subscribe({
       next: (data) => {
-        console.log('Films récupérés :', data);
         this.movies = data;
         this.filteredMovies = data;
         this.applyGenreFilter();
         this.applySearchFilter();
-        this.logUniqueGenres();
+        this.logUniqueGenres(); // Alimente le GenreService avec les genres présents
         this.isLoading = false;
       },
       error: (err) => {
@@ -83,8 +84,9 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  // Applique un filtre basé sur le genre sélectionné
   applyGenreFilter(): void {
-    this.filteredMovies = this.movies
+    this.filteredMovies = this.movies;
     if (this.genreFilter) {
       const genre = this.genreFilter.toLowerCase();
       this.filteredMovies = this.filteredMovies.filter((movie) =>
@@ -93,36 +95,41 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // Applique la recherche par mot-clé (appel API en live)
   applySearchFilter(): void {
     this.filteredMovies = this.movies; 
     const term = this.searchFilter.trim().toLowerCase();
-   
-      if (term) {
-        this.moviesService.searchMovies(term).subscribe({
-          next: (data) => {
-            this.filteredMovies = data.map((result: any) => ({
-              id: result.show.id,
-              name: result.show.name,
-              genres: result.show.genres,
-              image: result.show.image || { medium: 'assets/default-poster.jpg', original: 'assets/default-poster.jpg' },
-              summary: result.show.summary,
-              premiered: result.show.premiered,
-              year: result.show.premiered = new Date(result.show.premiered).getFullYear(),
-              rating: result.show.rating,
-            }));
-            this.isLoading = false;
-          },
-          error: (err) => {
-            console.error('Erreur API :', err);
-            this.isLoading = false;
-          },
-        });
-      } else {
-        this.filteredMovies = this.movies;
-      }
-      
+    
+    if (term) {
+      this.moviesService.searchMovies(term).subscribe({
+        next: (data) => {
+          // Remap des données reçues (car structure différente de getAllMovies)
+          this.filteredMovies = data.map((result: any) => ({
+            id: result.show.id,
+            name: result.show.name,
+            genres: result.show.genres,
+            image: result.show.image || { 
+              medium: 'assets/default-poster.jpg', 
+              original: 'assets/default-poster.jpg' 
+            },
+            summary: result.show.summary,
+            premiered: result.show.premiered,
+            year: result.show.premiered = new Date(result.show.premiered).getFullYear(),
+            rating: result.show.rating,
+          }));
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.error('Erreur API :', err);
+          this.isLoading = false;
+        },
+      });
+    } else {
+      this.filteredMovies = this.movies;
+    }
   }
 
+  // Tri des séries selon le type sélectionné (année, nom, note)
   sortMovies(sortType: string) {
     if (sortType === 'year') {
       this.filteredMovies.sort((a, b) => {
@@ -139,12 +146,14 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // Déclenchée par la search bar : met à jour le mot-clé et relance les filtres
   onSearchChange(term: string): void {
     this.searchFilter = term;
     this.applyGenreFilter(); 
     this.applySearchFilter();
   }
 
+  // Redondant avec sortMovies(), probablement à supprimer
   onSortChange(event: Event): void {
     const value = (event.target as HTMLSelectElement).value;
 
@@ -161,10 +170,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // Inutilisée pour l’instant (sûrement un reste de test)
   goToDetail(arg0: number) {
     throw new Error('Method not implemented.');
   }
 
+  // Extrait tous les genres uniques et les envoie au GenreService
   logUniqueGenres(): void {
     const genres: string[] = [];
   
@@ -177,10 +188,7 @@ export class HomeComponent implements OnInit {
         }
       }
     }
-  
+
     this.genreService.emitGenres(genres); 
-
   }
-
 }
-

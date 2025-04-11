@@ -2,34 +2,43 @@
     <h1 class="page-title">Don't know what to watch? No worries!</h1>
     <h2 class="page-subtitle">Select your favorite genres:</h2>
   
+    <!-- Section de sélection de genres -->
     <section class="section">
       <h2 class="section-title">Genres</h2>
+      <!-- Émet un event avec les genres choisis -->
       <app-genre-selection (onGenresSelected)="onGenresSelected($event)"></app-genre-selection>
     </section>
   
+    <!-- Section facultative pour affiner avec les séries préférées -->
     <section class="section">
       <h2 class="section-subtitle">
         Want more accurate suggestions? Tell us about your favorite shows:
       </h2>
   
+      <!-- Bouton pour afficher ou cacher la sélection de séries -->
       <button class="toggle-btn" (click)="toggleSeries()">
         {{ showSeriesSelector ? '🔽 Hide show selection' : '🎥 Select your favorite shows' }}
       </button>
   
       @if(showSeriesSelector){
         <div class="series-wrapper">
+          <!-- Composant de sélection de séries, renvoie les séries sélectionnées -->
           <app-series-selector (selectionChanged)="onTopRatedChanged($event)"></app-series-selector>
         </div>
       }
     </section>
   
+    <!-- Section des résultats -->
     <section class="section results">
       <h1 class="page-title">Here are some suggestions:</h1>
+  
       @if(shouldDisplayResults){
-          <app-movies-list [movies]="filteredMovies"></app-movies-list>
+        <!-- Liste des suggestions générée à partir des filtres -->
+        <app-movies-list [movies]="filteredMovies"></app-movies-list>
       }
       @else{
-          <p class="placeholder-text">Please select a genre or a show to get started</p>
+        <!-- Message par défaut si aucun critère sélectionné -->
+        <p class="placeholder-text">Please select a genre or a show to get started</p>
       }
     </section>
   </div>

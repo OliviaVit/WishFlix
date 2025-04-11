@@ -4,7 +4,9 @@
     (search)="onSearchChange($event)"
   ></app-search-bar>
 
+  <!-- Bouton pour naviguer vers la page des suggestions -->
   <button class="suggestions-button" routerLink="/suggestions">Suggestions</button>
 </div>
 
+<!-- Affiche la liste filtrée des séries -->
 <app-movies-list [movies]="filteredMovies"></app-movies-list>

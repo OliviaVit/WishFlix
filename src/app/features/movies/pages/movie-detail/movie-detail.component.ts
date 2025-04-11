@@ -8,24 +8,25 @@ import { SeasonDetailsComponent } from '../../../../season-details/season-detail
 
 @Component({
   selector: 'app-movie-detail',
-  standalone: true,
-  imports: [CommonModule, RouterLink, SeasonDetailsComponent],
+  standalone: true, // Le composant est autonome, pas besoin d'être déclaré dans un module
+  imports: [CommonModule, RouterLink, SeasonDetailsComponent], // Modules nécessaires au template
   templateUrl: './movie-detail.component.html',
   styleUrls: ['./movie-detail.component.css'],
 })
 export class MovieDetailComponent implements OnInit {
-  movie!: Movie;
-  seasons: Season[] = [];
-  selectedSeasonId!: number;
+  movie!: Movie; // Contiendra les infos du film
+  seasons: Season[] = []; // Liste des saisons du film
+  selectedSeasonId!: number; // ID de la saison sélectionnée
 
   constructor(
-    private route: ActivatedRoute,
-    private moviesService: MoviesService
+    private route: ActivatedRoute, // Pour accéder aux paramètres de l’URL
+    private moviesService: MoviesService // Pour faire les appels API
   ) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id'); // Récupère l'ID dans l'URL
     if (id) {
+      // Récupération des infos du film
       this.moviesService.getMovieById(+id).subscribe({
         next: (data: Movie) => {
           this.movie = data;
@@ -35,6 +36,7 @@ export class MovieDetailComponent implements OnInit {
         },
       });
 
+      // Récupération des saisons associées au film
       this.moviesService.getMovieSeasons(+id).subscribe({
         next: (data: Season[]) => {
           this.seasons = data;
@@ -46,6 +48,7 @@ export class MovieDetailComponent implements OnInit {
     }
   }
 
+  // Met à jour l'ID de la saison sélectionnée (utilisé dans le template)
   onSelectSeason(seasonId: number) {
     this.selectedSeasonId = seasonId;
   }
