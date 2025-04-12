@@ -1,15 +1,24 @@
+<!-- Barre de navigation principale -->
 <nav class="navbar">
+
+  <!-- Logo de l'application avec lien vers l'accueil -->
   <div class="logo" routerLink="/" style="cursor: pointer;">
     <span class="icon">🎬</span>
     <span class="text">WISHFLIX</span>
   </div>
 
+  <!-- Zone contenant les contrôles de tri et de filtre -->
   <div class="navbar-controls">
+
+    <!-- Composant de tri des contenus -->
     <div class="nav-button-style">
       <app-sort></app-sort>
     </div>
+
+    <!-- Composant de filtre des contenus -->
     <div class="nav-button-style">
       <app-filter></app-filter>
     </div>
+    
   </div>
 </nav>

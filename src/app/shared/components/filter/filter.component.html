@@ -1,10 +1,13 @@
 <div class="genre-select">  
-    <select class="genre-dropdown" [formControl]="genreControl">
-      <option value="">All genres</option>
-      @for (genre of genres; track genre) {
-        <option [value]="genre">{{ genre }}</option>
-      }
-    </select>
-  </div>
-  
-  
+  <!-- Menu déroulant lié à un FormControl Angular -->
+  <select class="genre-dropdown" [formControl]="genreControl">
+
+    <!-- Option par défaut pour afficher tous les genres -->
+    <option value="">All genres</option>
+
+    <!-- Boucle sur les genres disponibles pour générer les options -->
+    @for (genre of genres; track genre) {
+      <option [value]="genre">{{ genre }}</option>
+    }
+  </select>
+</div>

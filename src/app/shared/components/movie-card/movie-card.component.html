@@ -1,12 +1,19 @@
+<!-- Carte de film individuelle contenant l’affiche, le titre, la note et les genres -->
 <div class="movie-card">
+
+  <!-- Enveloppe contenant l’affiche et éventuellement la note -->
   <div class="poster-wrapper">
+
+    <!-- Affiche du film : version moyenne si disponible -->
     @if (movie.image?.medium) {
       <img
         [src]="movie.image.medium"
         [alt]="movie.name"
         class="movie-poster"
       />
-    } @else {
+    } 
+    @else {
+      <!-- Image alternative si aucune taille moyenne n’est dispo -->
       <img
         [src]="movie.image"
         [alt]="movie.name"
@@ -14,6 +21,7 @@
       />
     }
 
+    <!-- Badge de note s’il y en a une -->
     @if (movie.rating?.average) {
       <div class="movie-badge">
         ⭐ {{ movie.rating.average }}
@@ -21,8 +29,10 @@
     }
   </div>
 
+  <!-- Titre du film -->
   <h3 class="movie-title">{{ movie.name }}</h3>
 
+  <!-- Genres du film si disponibles -->
   <p class="movie-genres">
     @if (movie.genres?.length) {
       Genres : {{ movie.genres.join(', ') }}
