@@ -1,30 +1,67 @@
 <div class="about-container">
-    <h1 class="about-title">Wishflix</h1>
-  
-    <h2 class="about-subtitle">About the Project</h2>
-  
-    <p class="about-text">
-      This project was created by <strong>Inès Ouarghi</strong> and <strong>Vittenet Olivia</strong>.
-    </p>
-  
-    <p class="about-text">
-      Wishflix is an interactive web application built around a TV series API. It allows you to discover and explore a wide range of TV shows with several features:
-    </p>
-  
-    <ul class="about-list">
-      <li>
-        <strong>Main catalog:</strong> a home page displaying a catalog of series that you can sort by name, release year, or rating. You can also filter series by genre or search directly for a specific series.
-      </li>
-      <li>
-        <strong>Suggestions page:</strong> a dedicated secondary page where you can select your favorite genres and/or favorite series. Based on your choices, the app will generate 5 personalized movie recommendations.
-      </li>
-      <li>
-        <strong>Detailed series view:</strong> on any page, clicking on a series opens a detailed view showing seasons, episodes, synopsis, and more information.
-      </li>
-    </ul>
-  
-    <p class="about-text">
-      Our goal was to make discovering new series more fluid, interactive, and personalized to each user's taste.
+  <h1 class="about-title">Wishflix</h1>
+
+  <h2 class="about-subtitle">About the Project</h2>
+
+  <p class="about-text">
+    This project was created by <strong>Inès OUARGHI</strong> and <strong>Olivia VITTENET</strong>.
+  </p>
+
+  <p class="about-text">
+    Wishflix is an interactive web application built around a TV series API. It allows you to discover and explore a wide range of TV shows with several features:
+  </p>
+
+  <ul class="about-list">
+    <li>
+      <strong>Main catalog:</strong> a home page displaying a catalog of series that you can sort by name, release year, or rating. You can also filter series by genre or search directly for a specific series.
+    </li>
+    <li>
+      <strong>Suggestions page:</strong> a dedicated secondary page where you can select your favorite genres and/or favorite series. Based on your choices, the app will generate 5 personalized movie recommendations.
+    </li>
+    <li>
+      <strong>Detailed series view:</strong> on any page, clicking on a series opens a detailed view showing seasons, episodes, synopsis, and more.
+    </li>
+  </ul>
+
+  <p class="about-text">
+    Our goal was to make discovering new series more fluid, interactive, and personalized to each user's taste.
+  </p>
+
+  <h2 class="about-subtitle">How the Suggestions System Works</h2>
+
+  <p class="about-text">
+    Our suggestion system is based on a smart filtering and scoring algorithm that combines the user’s favorite genres and selected series to deliver highly relevant recommendations.
+  </p>
+
+  <ul class="about-list">
+    <li>
+      <strong>Genre Selection:</strong> Users can select their favorite genres. These preferences are saved and used to filter the series catalog.
+    </li>
+    <li>
+      <strong>Series Favorites:</strong> Users can also pick their favorite known TV shows. The genres of these favorites are extracted to enrich the filtering process.
+    </li>
+    <li>
+      <strong>Smart Filtering:</strong> Each series is scored based on how many genres it shares with the selected preferences. The series that match the most criteria are prioritized.
+    </li>
+    <li>
+      <strong>Exclusion of Already Selected Shows:</strong> To avoid redundancy, series that have already been marked as favorites are excluded from the suggestions.
+    </li>
+    <li>
+      <strong>Summary Similarity Algorithm:</strong> We further refine suggestions by analyzing the similarity of show summaries: series that share similar keywords with the user’s favorites get a higher score.
+    </li>
+    <li>
+      <strong>Final Result:</strong> The 5 best matching series are displayed, offering a personalized discovery experience based on the user's individual taste.
+    </li>
+  </ul>
+
+  <p class="about-text">
+    Thanks to this dynamic and multi-criteria system, Wishflix adapts to each user to offer a truly customized selection of series to explore!
+  </p>
+
+  <div class="about-note">
+    <p>
+      <strong>Note on Component Naming:</strong> You may notice that many of our components and variables use the term <code>movie</code>. This is because the initial version of Wishflix was built using a movie-based API. Later, we transitioned to a TV series API to better align with our project's goals. However, to avoid potential issues and extensive refactoring, we retained the original naming conventions. As a result, we continued to work with components named "movie" and did not rename them to "series" to maintain consistency and prevent potential disruptions in our project. Rest assured, despite the naming, the application is entirely focused on TV series.
     </p>
   </div>
-  
+
+</div>
