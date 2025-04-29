@@ -1,0 +1,33 @@
+.genre-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: center;
+  padding: 1rem;
+}
+
+button {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid #d6bfa8;
+  background-color: #fdf8f2;
+  color: #5a4032;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+button:hover {
+  background-color: #e9d4c1;
+  color: #3d2a1f;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+button.selected {
+  background-color: #c7a88f;
+  color: white;
+  border-color: #b6977d;
+  font-weight: 600;
+}

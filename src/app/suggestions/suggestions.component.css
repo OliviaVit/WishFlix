@@ -1,0 +1,93 @@
+.genre-button {
+    background-color: #fdf8f2;
+    color: #5a4032;
+    border: 1px solid #d6bfa8;
+    padding: 0.4rem 1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  }
+  
+  .genre-button:hover {
+    background-color: #e9d4c1;
+    color: #3d2a1f;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  
+  /* Enlève tout débordement horizontal de la page */
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Conteneur principal en pleine largeur sans padding inutile */
+.page-container {
+  width: 100%;
+  padding: 2rem 2vw 2rem 2vw; /* petit padding horizontal flexible */
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Centrage uniquement du titre */
+.centered-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #7c5b44;
+  margin-bottom: 2rem;
+}
+
+/* Sous-titres alignés à gauche */
+.section-subtitle {
+  font-size: 1.2rem;
+  color: #7c5b44;
+  margin: 1rem 0;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Mise en page pour le bouton à droite du texte */
+.subtitle-with-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Le bouton */
+.toggle-btn {
+  background-color: #d8c1ae;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+  white-space: nowrap;
+}
+
+.toggle-btn:hover {
+  background-color: #bfa288;
+}
+
+/* Résultat suggestions */
+.section {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.placeholder-text {
+  color: #999;
+  font-style: italic;
+  text-align: left;
+  padding-left: 0.5rem;
+}

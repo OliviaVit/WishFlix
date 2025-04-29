@@ -1,105 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { Movie } from '../../../../models/movie.model';
 import { MoviesService } from '../../../../core/services/movies.service';
 import { SearchBarComponent } from '../../../../shared/components/search-bar/search-bar.component';
 import { MovieCardComponent } from '../../../../shared/components/movie-card/movie-card.component';
+import { GenreService } from 'src/app/core/services/genre.service';
 
 @Component({
   selector: 'app-movies-list',
-  standalone: true,
+  standalone: true, 
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
+    ReactiveFormsModule,
     SearchBarComponent,
-    MovieCardComponent,
+    MovieCardComponent
   ],
   templateUrl: './movies-list.component.html',
   styleUrls: ['./movies-list.component.css'],
 })
 export class MoviesListComponent implements OnInit {
-  movies: Movie[] = [];
-  filteredMovies: Movie[] = [];
-  genreFilter: string | null = null;
-  searchFilter: string = '';
-  isLoading: boolean = false;
 
-  constructor(
-    private route: ActivatedRoute,
-    private moviesService: MoviesService
-  ) {}
+  // Reçoit la liste des séries à afficher depuis un composant parent
+  @Input() movies: Movie[] = [];
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.genreFilter = params['genre'] || null;
-      this.searchFilter = params['search'] || '';
-      this.fetchMovies();
-    });
-  }
-
-  fetchMovies(): void {
-    this.isLoading = true;
-    this.moviesService.getAllMovies().subscribe({
-      next: (data) => {
-        console.log('Films récupérés :', data);
-        this.movies = data;
-        this.filteredMovies = data;
-        this.applyGenreFilter();
-        this.applySearchFilter();
-        this.isLoading = false;
-      },
-      error: (err) => {
-        console.error('Erreur API :', err);
-        this.isLoading = false;
-      },
-    });
-  }
-
-  applyGenreFilter(): void {
-    if (this.genreFilter) {
-      const genre = this.genreFilter.toLowerCase();
-      this.filteredMovies = this.filteredMovies.filter((movie) =>
-        movie.genres?.some((g) => g.toLowerCase().includes(genre))
-      );
-    }
-  }
-
-  applySearchFilter(): void {
-    const term = this.searchFilter.trim().toLowerCase();
-    if (term) {
-      this.filteredMovies = this.filteredMovies.filter((movie) =>
-        movie.name.toLowerCase().includes(term)
-      );
-    }
-  }
-
-  onSearchChange(term: string): void {
-    this.searchFilter = term;
-    this.applyGenreFilter(); // Refiltrage selon le genre aussi
-    this.applySearchFilter();
-  }
-
-  onSortChange(event: Event): void {
-    const value = (event.target as HTMLSelectElement).value;
-
-    if (value === 'year') {
-      this.filteredMovies.sort((a, b) => {
-        const dateA = new Date(a.premiered).getFullYear();
-        const dateB = new Date(b.premiered).getFullYear();
-        return dateA - dateB;
-      });
-    } else if (value === 'name') {
-      this.filteredMovies.sort((a, b) => a.name.localeCompare(b.name));
-    } else if (value === 'rating') {
-      this.filteredMovies.sort((a, b) => (b.rating?.average || 0) - (a.rating?.average || 0));
-    }
-  }
-
-  goToDetail(arg0: number) {
-    throw new Error('Method not implemented.');
+    // Code d'initialisation éventuel à ajouter ici (par exemple : chargement des filtres)
   }
 }

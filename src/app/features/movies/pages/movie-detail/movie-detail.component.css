@@ -1,36 +1,98 @@
 .movie-detail {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 1rem;
-    text-align: center;
-  
-    .back-button {
-      display: inline-block;
-      margin-bottom: 1rem;
-      background-color: #eee;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-size: 0.95rem;
-      border-radius: 6px;
-      cursor: pointer;
-  
-      &:hover {
-        background-color: #ddd;
-      }
-    }
-  
-    .movie-banner {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
-  
-    .movie-summary {
-      text-align: left;
-      margin-top: 1rem;
-      color: #444;
-      font-size: 0.95rem;
-    }
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  background-color: #fdf8f2;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  color: #5a4032;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.back-button {
+  background-color: #e5d6c5;
+  border: 1px solid #a38b77;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  color: #5a4032;
+  margin-bottom: 1.5rem;
+}
+
+.movie-content {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.movie-left {
+  flex: 1;
+  min-width: 280px;
+}
+
+.movie-banner {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 1rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.movie-summary {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #6a4a34;
+  text-align: justify;
+  margin-top: 1rem;
+}
+
+.movie-right {
+  flex: 2;
+  min-width: 300px;
+}
+
+.season-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0;
+}
+
+.season-list button {
+  background-color: #f5e7d8;
+  border: 1px solid #b6977d;
+  border-radius: 20px;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  color: #5a4032;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.season-list button:hover {
+  background-color: #e9d4c1;
+}
+
+@media (max-width: 768px) {
+  .movie-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .movie-left,
+  .movie-right {
+    width: 100%;
+  }
+
+  .movie-banner {
+    max-width: 100%;
+  }
 }

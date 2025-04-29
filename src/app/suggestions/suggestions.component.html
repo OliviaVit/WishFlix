@@ -1,0 +1,50 @@
+<div class="page-container">
+  <!-- Titre principal centré de la page -->
+  <h1 class="main-title centered-title">You don’t know what to watch ? No worries !</h1>
+
+  <!-- Sous-titre pour la sélection des genres -->
+  <h2 class="section-subtitle">Select your favorites genres :</h2>
+
+  <!-- Section des genres : composant qui émet les genres choisis -->
+  <section class="section">
+    <app-genre-selection (onGenresSelected)="onGenresSelected($event)"></app-genre-selection>
+  </section>
+
+  <!-- Section pour la sélection des séries préférées -->
+  <section class="section">
+
+    <!-- Ligne contenant le sous-titre et le bouton d’affichage/cachage -->
+    <div class="subtitle-with-button">
+      <h2 class="section-subtitle inline-subtitle">
+        Want more accurate suggestions ? Tell us about your favorite shows :
+      </h2>
+
+      <!-- Bouton pour afficher ou masquer la sélection des séries -->
+      <button class="toggle-btn" (click)="toggleSeries()">
+        {{ showSeriesSelector ? '🔽 Hide show selection' : '🎥 Select your favorite shows' }}
+      </button>
+    </div>
+
+    <!-- Affiche le composant de sélection de séries si l’option est activée -->
+    @if(showSeriesSelector){
+      <div class="series-wrapper">
+        <app-series-selector (selectionChanged)="onTopRatedChanged($event)"></app-series-selector>
+      </div>
+    }
+  </section>
+
+  <!-- Section des suggestions de séries -->
+  <section class="section results">
+    <h2 class="section-subtitle">Here are some suggestions :</h2>
+
+    <!-- Affiche la liste de suggestions si des résultats sont dispo -->
+    @if(shouldDisplayResults){
+      <app-movies-list [movies]="filteredMovies"></app-movies-list>
+    }
+
+    <!-- Message par défaut si aucun genre ou série n’est sélectionné -->
+    @else{
+      <p class="placeholder-text">Please select a genre or a show to get started</p>
+    }
+  </section>
+</div>

@@ -1,0 +1,42 @@
+.about-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fdf8f2;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .about-title {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .about-subtitle {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #555;
+  }
+  
+  .about-text {
+    font-size: 1.2rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+  
+  .about-list {
+    list-style-type: disc;
+    text-align: left;
+    padding-left: 40px;
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 30px;
+  }
+  
+  .about-list li {
+    margin-bottom: 15px;
+  }
+  

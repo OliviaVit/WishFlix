@@ -1,22 +1,13 @@
-<h2>Liste des films</h2>
+<!-- Si le tableau est vide, on affiche un message -->
+@if (movies?.length === 0) {
+  <p>No results</p>
+}
 
-<app-search-bar
-  placeholder="Rechercher un film..."
-  (search)="onSearchChange($event)"
-></app-search-bar>
-
-<select (change)="onSortChange($event)">
-  <option value="name">Nom</option>
-  <option value="year">Année</option>
-  <option value="rating">Note</option>
-</select>
-
-<p *ngIf="filteredMovies?.length === 0">Aucun résultat</p>
 <div class="movies-grid">
-    <div *ngFor="let movie of filteredMovies">
-      <a [routerLink]="['/movies', movie.id]">
-        <app-movie-card [movie]="movie"></app-movie-card>
-      </a>
-    </div>
-  </div>
-  
+  <!-- Boucle sur chaque film et affiche une carte cliquable vers la page de détail -->
+  @for (movie of movies; track movie.id) {
+    <a [routerLink]="['/movies', movie.id]">
+      <app-movie-card [movie]="movie"></app-movie-card>
+    </a>
+  }
+</div>

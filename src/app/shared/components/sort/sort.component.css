@@ -1,0 +1,28 @@
+.wishflix-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-color: #fdf8f2;
+  color: #5a4032;
+  border: 1px solid #a38b77;
+  border-radius: 10px; /* uniforme avec All genres */
+  padding: 0.5rem 2rem 0.5rem 1rem;
+  font-size: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+  cursor: pointer;
+
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%235a4032" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 0.7rem center;
+  background-size: 1rem;
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.wishflix-select:focus {
+  outline: none;
+  border-color: #7a5d4b;
+  box-shadow: 0 0 5px rgba(122, 93, 75, 0.3);
+}

@@ -1,8 +1,8 @@
+<!-- Champ de recherche avec liaison Angular (FormControl) -->
+
 <input
   type="text"
   class="search-bar"
-  [(ngModel)]="searchTerm"
-  (input)="onInputChange()"
-  [placeholder]="placeholder"
+  [formControl]="searchControl"
+  [placeholder]="placeholder || 'Search a Series...'"
 />
-

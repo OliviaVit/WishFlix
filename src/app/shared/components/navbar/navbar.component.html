@@ -1,20 +1,29 @@
-<nav class="flex items-center justify-between px-6 py-4 bg-gray-900 text-white shadow-md">
-    <div class="text-2xl font-bold flex items-center space-x-2">
-      <span>🎬</span>
-      <span>WISHFLIX</span>
+<!-- Barre de navigation principale -->
+<nav class="navbar">
+
+  <!-- Logo de l'application avec lien vers l'accueil -->
+  <div class="logo" routerLink="/" style="cursor: pointer;">
+    <span class="icon">🎬</span>
+    <span class="text">WISHFLIX</span>
+  </div>
+
+  <!-- Zone contenant les contrôles de tri et de filtre -->
+  <div class="navbar-controls">
+
+    <!-- Composant de tri des contenus -->
+    <div class="nav-button-style">
+      <app-sort></app-sort>
     </div>
-  
-    <div class="flex items-center space-x-4">
-      <select
-        class="bg-gray-800 text-white px-3 py-1 rounded border border-gray-700 focus:outline-none"
-        [(ngModel)]="selectedGenre"
-        (change)="onGenreChange()"
-      >
-        <option value="">Tous les genres</option>
-        <option *ngFor="let genre of genres" [value]="genre">
-          {{ genre }}
-        </option>
-      </select>
+
+    <!-- Composant de filtre des contenus -->
+    <div class="nav-button-style">
+      <app-filter></app-filter>
     </div>
-  </nav>
-  
+
+    <!-- Lien vers la page About -->
+    <div class="nav-button-style">
+      <a routerLink="/about" class="nav-link">About</a>
+    </div>
+    
+  </div>
+</nav>

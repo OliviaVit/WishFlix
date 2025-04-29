@@ -1,0 +1,52 @@
+.genre-dropdown {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #f5f0e6;
+    color: #5a4032;
+    border: 1px solid #a38b77;
+    border-radius: 8px;
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    font-size: 1rem;
+    font-family: 'Segoe UI', sans-serif;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%235a4032' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 0.7rem center;
+    background-size: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: border 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .genre-dropdown:focus {
+    border-color: #7a5d4b;
+    box-shadow: 0 0 5px rgba(122, 93, 75, 0.3);
+    outline: none;
+  }
+  
+  button {
+    padding: 0.5rem 1.2rem;
+    border: 1px solid #d6bfa8;
+    background-color: #fdf8f2;
+    color: #5a4032;
+    border-radius: 999px;
+    font-size: 0.95rem;
+    font-family: 'Segoe UI', sans-serif;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  button:hover {
+    background-color: #e9d4c1;
+    color: #3d2a1f;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  }
+  
+  button.selected {
+    background-color: #c7a88f;
+    color: white;
+    border-color: #b6977d;
+    font-weight: 600;
+  }
+  
