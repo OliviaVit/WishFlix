@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { SeasonDetailsComponent } from './season-details/season-details.component';
 import { SuggestionsComponent } from './suggestions/suggestions.component';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 export const routes: Routes = [
 
@@ -35,4 +36,8 @@ export const routes: Routes = [
 
   // Route vers la page de suggestions personnalisées
   { path: 'suggestions', component: SuggestionsComponent },
+
+  //Route vers la page about
+  { path: 'about', component: AboutComponent },
+
 ];
